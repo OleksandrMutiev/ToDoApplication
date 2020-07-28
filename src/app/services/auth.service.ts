@@ -16,14 +16,14 @@ export class AuthService {
   }
 
   public register(user: User): Observable<any> {
-    return this.http.post('users/register', user);
+    return this.http.post('/users/register', user);
   }
 
   public login(user: User): Observable<any> {
-    return this.http.post('auth/login', user);
+    return this.http.post('/auth/login', user);
   }
 
   public logout(): Observable<any> {
-    return this.http.get(`auth/logout`);
+    return this.http.get(`/auth/logout`);
   }
 }

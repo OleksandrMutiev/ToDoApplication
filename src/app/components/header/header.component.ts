@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
     ];
   }
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {console.log(window.location.origin)}
 
   private logout(event: Event) {
     event.preventDefault();

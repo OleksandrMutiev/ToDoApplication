@@ -9,7 +9,7 @@ export class TodoService {
   constructor(private http: HttpService) {}
 
   public addTodo(todo: Todo): Observable<Todo> {
-    return this.http.post(`todos/create`, todo);
+    return this.http.post(`/todos/create`, todo);
   }
 
   public getNotArchiveTodos(
@@ -24,7 +24,7 @@ export class TodoService {
       params = params.append('search', search);
     }
     return this.http.get(
-      `todos/unarchive?sort=${sort}&skip=${skip}&limit=${limit}`,
+      `/todos/unarchive?sort=${sort}&skip=${skip}&limit=${limit}`,
       { params },
     );
   }
@@ -41,7 +41,7 @@ export class TodoService {
       params = params.append('search', search);
     }
     return this.http.get(
-      `todos/archive?sort=${sort}&skip=${skip}&limit=${limit}`,
+      `/todos/archive?sort=${sort}&skip=${skip}&limit=${limit}`,
       { params },
     );
   }
@@ -58,7 +58,7 @@ export class TodoService {
       params = params.append('search', search);
     }
     return this.http.get(
-      `todos/active?sort=${sort}&skip=${skip}&limit=${limit}`,
+      `/todos/active?sort=${sort}&skip=${skip}&limit=${limit}`,
       { params },
     );
   }
@@ -75,20 +75,20 @@ export class TodoService {
       params = params.append('search', search);
     }
     return this.http.get(
-      `todos/done?sort=${sort}&skip=${skip}&limit=${limit}`,
+      `/todos/done?sort=${sort}&skip=${skip}&limit=${limit}`,
       { params },
     );
   }
 
   public deleteTodo(id: string): Observable<void> {
-    return this.http.delete(`todos/delete/${id}`);
+    return this.http.delete(`/todos/delete/${id}`);
   }
 
   public updateTodo(todo: Todo): Observable<Todo> {
-    return this.http.put(`todos/update/${todo._id}`, todo);
+    return this.http.put(`/todos/update/${todo._id}`, todo);
   }
 
   public getTodoStatistics(): Observable<any> {
-    return this.http.get(`todos/statistic`);
+    return this.http.get(`/todos/statistic`);
   }
 }
