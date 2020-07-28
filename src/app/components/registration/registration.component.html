@@ -1,0 +1,117 @@
+<div class="registration__outer-container">
+  <div class="registration__inner-container">
+    <form class="registration__form" [formGroup]="form">
+      <h2 class="main-title">Registration</h2>
+      <div class="registration__form-input-container">
+        <mat-form-field appearance="outline" class="registration__form-input">
+          <mat-label>Enter your email</mat-label>
+          <input
+            matInput
+            placeholder="email@example.com"
+            formControlName="email"
+            required
+          />
+          <mat-error *ngIf="form.get('email').hasError('required')"
+            >Email is required</mat-error
+          >
+          <mat-error *ngIf="form.get('email').hasError('email')"
+            >Not a valid email</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="registration__form-input">
+          <mat-label>Create login</mat-label>
+          <input
+            matInput
+            placeholder="JohnDoe"
+            formControlName="login"
+            required
+          />
+          <mat-error *ngIf="form.get('login').hasError('required')"
+            >Login is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="registration__form-input-container">
+        <mat-form-field appearance="outline" class="registration__form-input">
+          <mat-label>Enter your name</mat-label>
+          <input matInput placeholder="John" formControlName="firstName" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="registration__form-input">
+          <mat-label>Enter your surname</mat-label>
+          <input matInput placeholder="Doe" formControlName="lastName" />
+        </mat-form-field>
+      </div>
+      <div class="registration__form-input-container" formGroupName="passwords">
+        <mat-form-field appearance="outline" class="registration__form-input">
+          <mat-label>Enter your password</mat-label>
+          <input
+            matInput
+            [type]="hidePassword ? 'password' : 'text'"
+            formControlName="password"
+            required
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword"
+          >
+            <mat-icon>{{
+              hidePassword ? 'visibility_off' : 'visibility'
+            }}</mat-icon>
+          </button>
+          <mat-error *ngIf="form.get('passwords.password').hasError('required')"
+            >Password is required</mat-error
+          >
+          <mat-error
+            *ngIf="form.get('passwords.password').hasError('minlength')"
+            >Password minimum length is 6 characters</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="registration__form-input">
+          <mat-label>Confirm your password</mat-label>
+          <input
+            matInput
+            [type]="hideConfirm ? 'password' : 'text'"
+            formControlName="confirm"
+            required
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hideConfirm = !hideConfirm"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hideConfirm"
+          >
+            <mat-icon>{{
+              hideConfirm ? 'visibility_off' : 'visibility'
+            }}</mat-icon>
+          </button>
+          <mat-error *ngIf="form.get('passwords.confirm').hasError('compare')"
+            >Passwords mismatch</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="registration__form-input-container">
+        <button
+          (click)="submit()"
+          type="submit"
+          mat-raised-button
+          class="registration__form-btn bubbly-button"
+          [disabled]="form.invalid || submitted"
+        >
+          Sign up
+        </button>
+        <span class="registration__form-span">OR</span>
+        <a
+          [routerLink]="['/', 'login']"
+          mat-raised-button
+          class="registration__form-btn bubbly-button"
+          >Login</a
+        >
+      </div>
+    </form>
+  </div>
+</div>

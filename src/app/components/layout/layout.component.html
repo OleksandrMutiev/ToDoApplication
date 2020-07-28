@@ -1,0 +1,21 @@
+<div class="layout">
+  <div class="layout__header">
+    <app-header></app-header>
+  </div>
+  <div class="layout__body">
+    <div
+      id="page"
+      class="route__container"
+      [@routeAnimation]="getAnimation(outlet)"
+    >
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+    <mat-progress-spinner
+      *ngIf="spinnerService.loaded"
+      class="mat-progress-spinner"
+      mode="indeterminate"
+      diameter="200"
+    >
+    </mat-progress-spinner>
+  </div>
+</div>

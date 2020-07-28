@@ -1,0 +1,19 @@
+<div class="todo-delete">
+  <h2 class="todo-delete__title">Are you sure?</h2>
+  <div class="todo-delete__buttons">
+    <button
+      mat-raised-button
+      mat-dialog-close
+      class="todo-delete__button todo-delete__button--cancel bubbly-button"
+    >
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      class="todo-delete__button bubbly-button"
+      (click)="deleteTodo()"
+    >
+      Delete
+    </button>
+  </div>
+</div>

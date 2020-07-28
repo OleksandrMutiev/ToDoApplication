@@ -1,0 +1,13 @@
+@import '../../../app/shared/params';
+
+.layout__body ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: $fuschia;
+}
+
+.mat-progress-spinner {
+  position: absolute;
+  top: 30%;
+  left: 45%;
+  color: red;
+}

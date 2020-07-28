@@ -1,0 +1,213 @@
+<div class="todos__outer-container">
+  <div class="todos__inner-container">
+    <!--    Title-->
+    <h2 class="main-title" *ngIf="todos.length; else noTodos">
+      {{ todoData.title | titlecase }}
+    </h2>
+    <!--    Search field-->
+    <mat-form-field
+      class="todos__search"
+      [ngClass]="{ 'todos__search--full': !todos.length }"
+    >
+      <mat-label>Search...</mat-label>
+      <input #search matInput type="text" />
+    </mat-form-field>
+    <!--Block with todos-->
+    <div class="todos__cards" *ngIf="todos.length">
+      <!--      Todos sidebar with statistic-->
+      <div class="todos__statistic" *ngIf="statistic">
+        <div class="todos__statistic-item todos__statistic-item--total">
+          Total:
+          <span class="todos__statistic-badge">{{ statistic.total }}</span>
+        </div>
+        <div class="todos__statistic-item todos__statistic-item--archive">
+          Archive:
+          <span class="todos__statistic-badge">{{ statistic.archive }}</span>
+        </div>
+        <div class="todos__statistic-item todos__statistic-item--active">
+          Active:
+          <span class="todos__statistic-badge">{{ statistic.active }}</span>
+        </div>
+        <div class="todos__statistic-item todos__statistic-item--done">
+          Done: <span class="todos__statistic-badge">{{ statistic.done }}</span>
+        </div>
+        <div class="todos__statistic-item todos__statistic-item--deadline">
+          Deadline:
+          <span class="todos__statistic-badge">{{ statistic.deadline }}</span>
+        </div>
+      </div>
+      <!--      Block with control buttons -->
+      <div class="todos__controllers-block">
+        <button
+          mat-raised-button
+          class="todos__add-btn bubbly-button"
+          (click)="createTodo()"
+        >
+          Add task
+        </button>
+
+        <mat-form-field appearance="fill" class="todos__select">
+          <mat-label class="todos__select-label">Sort by</mat-label>
+          <mat-select
+            [formControl]="panelValue"
+            panelClass="todos__select-panel"
+            (selectionChange)="changeSort($event.value)"
+          >
+            <mat-option value="createdAt_first">Older</mat-option>
+            <mat-option value="createdAt_last">Newer</mat-option>
+            <mat-option value="deadline_first">Deadline Soon</mat-option>
+            <mat-option value="deadline_last">Deadline Later</mat-option>
+            <mat-option value="active" *ngIf="todoData.active === undefined"
+              >Active first</mat-option
+            >
+            <mat-option value="done" *ngIf="todoData.active === undefined"
+              >Done first</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="todos__select">
+          <mat-label class="todos__select-label">Per page</mat-label>
+          <mat-select
+            [formControl]="panelValue"
+            panelClass="todos__select-panel"
+            (selectionChange)="changeLimit($event.value)"
+          >
+            <mat-option value="5">5</mat-option>
+            <mat-option value="10">10</mat-option>
+            <mat-option value="25">25</mat-option>
+            <mat-option value="50">50</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <!--      Card with task-->
+      <!--      Pagination-->
+      <mat-card
+        *ngFor="
+          let todo of todos
+            | paginate
+              : {
+                  itemsPerPage: paginationValue,
+                  currentPage: page,
+                  totalItems: statistic
+                    ? statistic[this.statisticFieldName]
+                    : paginationValue
+                }
+        "
+        class="todos__card"
+      >
+        <!--        Card title-->
+        <mat-card-title class="card__title">
+          <p class="card__title-status">
+            {{ todo.title }}
+          </p>
+          <div class="card__title-additionals">
+            <!--            Task status-->
+            <span
+              *ngIf="todo.archive; else notArchive"
+              [ngClass]="{ badge_active: todo.active }"
+              class="card__title-status-state card__title-status-state--archive"
+              matBadge="{{ todo.active ? 'A' : 'D' }}"
+              matBadgeSize="medium"
+              matTooltip="{{ todo.active ? 'Was active' : 'Was done' }}"
+            >
+              Archive
+            </span>
+
+            <ng-template #notArchive>
+              <span
+                class="card__title-status-state"
+                [ngClass]="{
+                  'card__title-status-state--active': todo.active
+                }"
+                >{{ todo.active ? 'Active' : 'Done' }}
+              </span>
+            </ng-template>
+            <!--Task dates-->
+            <div class="card__title-dates">
+              <p
+                class="card__title-date card__title-date--created"
+                *ngIf="todo.createdAt"
+              >
+                Created:
+                {{ todo.createdAt | date: 'dd/MM/yyyy HH:mm' }}
+              </p>
+              <p
+                class="card__title-date card__title-date--deadline"
+                *ngIf="todo.deadline"
+                [ngClass]="{
+                  todos__expired: (todo.deadline | CustomDate) < now
+                }"
+              >
+                Deadline:
+                {{ todo.deadline.toString() | date: 'dd/MM/yyyy HH:mm' }}
+              </p>
+            </div>
+          </div>
+        </mat-card-title>
+        <!--        Task content-->
+        <mat-card-content class="card__content">{{
+          todo.text
+        }}</mat-card-content>
+        <!--        Task action buttons-->
+        <mat-card-actions class="todos__buttons">
+          <button mat-icon-button (click)="checkTodo(todo)">
+            <mat-icon
+              class="check_circle_outline-icon lighted-icon"
+              matTooltip="Check done"
+              matTooltipPosition="below"
+              >check_circle_outline</mat-icon
+            >
+          </button>
+          <button mat-icon-button (click)="editTodo(todo)">
+            <mat-icon
+              class="create-icon lighted-icon"
+              matTooltip="Edit"
+              matTooltipPosition="below"
+              >create icon</mat-icon
+            >
+          </button>
+          <button mat-icon-button (click)="archiveTodo(todo)">
+            <mat-icon
+              class="archive-icon lighted-icon"
+              matTooltip="Archive"
+              matTooltipPosition="below"
+              >backup icon</mat-icon
+            >
+          </button>
+          <button mat-icon-button (click)="deleteTodo(todo._id)">
+            <mat-icon
+              class="delete-icon lighted-icon"
+              matTooltip="Delete"
+              matTooltipPosition="below"
+              >delete icon</mat-icon
+            >
+          </button>
+        </mat-card-actions>
+      </mat-card>
+      <!--End of task-->
+      <!--      Pagination block-->
+      <div class="todos__pagination--block">
+        <pagination-controls
+          (pageChange)="paginate($event)"
+          class="todos__pagination"
+        ></pagination-controls>
+      </div>
+      <!--      End of pagination block-->
+    </div>
+  </div>
+  <!--    End of card conttainer block-->
+  <!--  No todos block-->
+  <ng-template #noTodos>
+    <div class="todos__no-todos">
+      <h2 class="main-title">You have no ToDo's yet</h2>
+      <button
+        mat-raised-button
+        class="todos__add-btn bubbly-button"
+        (click)="createTodo()"
+      >
+        Add task
+      </button>
+    </div>
+  </ng-template>
+</div>

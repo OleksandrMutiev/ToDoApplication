@@ -1,0 +1,21 @@
+@import '../../../app/shared/params';
+
+.error {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 45px;
+  color: $white;
+  font-family: 'Racing Sans One', sans-serif;
+  opacity: 0.7;
+
+  &__icon {
+    width: 200px;
+    height: 200px;
+    font-size: 200px;
+    opacity: 1;
+  }
+}

@@ -1,0 +1,41 @@
+@import '../../../../app/shared/params';
+
+.todo-delete {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__title {
+    margin-top: 0;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $fuschia;
+  }
+
+  &__buttons {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .todo-delete__button {
+      padding: 0;
+
+      &--cancel {
+        background-color: $violet;
+        box-shadow: 0 2px 25px rgba($violet, 0.5);
+      }
+    }
+  }
+
+  &__button {
+    width: 150px;
+    margin-right: 15px;
+    margin-left: 15px;
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,67 @@
+<form class="todo__add-form" [formGroup]="form" (ngSubmit)="submit()">
+  <h2 class="todo__add-form-title">
+    {{ data ? 'Update task' : 'Add new task' }}
+  </h2>
+  <mat-form-field class="todo__add-input" appearance="outline">
+    <mat-label>Add title</mat-label>
+    <input
+      formControlName="title"
+      matInput
+      placeholder="Title"
+      autocomplete="no"
+    />
+  </mat-form-field>
+  <div class="todo__add-time-inputs">
+    <mat-form-field
+      class="todo__add-input todo__add-input--time"
+      appearance="outline"
+    >
+      <mat-label>Set deadline</mat-label>
+      <input
+        matInput
+        [min]="minDate"
+        [matDatepicker]="picker2"
+        formControlName="date"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2 color="primary"></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field
+      class="todo__add-input todo__add-input--time"
+      appearance="outline"
+    >
+      <mat-label>Set deadline</mat-label>
+      <input matInput type="time" formControlName="time" />
+    </mat-form-field>
+  </div>
+  <mat-form-field class="todo__add-input" appearance="outline">
+    <mat-label>Describe task</mat-label>
+    <textarea
+      formControlName="text"
+      matInput
+      cdkTextareaAutosize
+      #textarea="cdkTextareaAutosize"
+      cdkAutosizeMinRows="5"
+      placeholder="Description"
+    ></textarea>
+  </mat-form-field>
+
+  <div class="todo__add-btn-block">
+    <button
+      class="todo__add-btn bubbly-button"
+      type="submit"
+      mat-raised-button
+      [disabled]="form.invalid"
+    >
+      {{ data ? 'Update' : 'Add' }}
+    </button>
+    <button
+      class="todo__add-btn todo__add-btn--cancel bubbly-button"
+      mat-dialog-close
+      mat-raised-button
+    >
+      Cancel
+    </button>
+  </div>
+</form>

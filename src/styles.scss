@@ -1,0 +1,82 @@
+@import 'app/shared/params';
+@import 'app/shared/fonts';
+@import '~@angular/material/theming';
+
+a {
+  font-size: 20px;
+  text-decoration: none;
+  color: $white;
+  cursor: pointer;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Lato, sans-serif;
+  font-weight: 500;
+  min-width: 400px;
+  background-color: $main;
+}
+
+.route__container {
+  position: relative;
+
+  & > * {
+    display: block;
+  }
+}
+
+.mat-form-field {
+  font-family: Lato, sans-serif;
+  font-weight: 500;
+}
+
+.main-title {
+  font-family: Monoton, 'Helvetica Neue', sans-serif;
+  font-size: 35px;
+  color: $fuschia;
+  text-align: center;
+  letter-spacing: 3px;
+  font-weight: 400;
+  text-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+}
+
+.lighted-icon {
+  transition: 0.2s ease-in-out;
+  border-radius: 50%;
+}
+
+.archive-icon {
+  color: $light_yellow;
+
+  &:hover {
+    box-shadow: 0 2px 25px $light_yellow;
+  }
+}
+
+.delete-icon {
+  color: $light_red;
+
+  &:hover {
+    box-shadow: 0 2px 25px $light_red;
+  }
+}
+
+.create-icon {
+  color: $violet;
+
+  &:hover {
+    box-shadow: 0 2px 25px $violet;
+  }
+}
+
+.check_circle_outline-icon {
+  color: $light_green;
+
+  &:hover {
+    box-shadow: 0 2px 25px $light_green;
+  }
+}

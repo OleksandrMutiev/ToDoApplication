@@ -1,0 +1,59 @@
+@import '../../../../app/shared/params';
+
+.todo {
+  &__add {
+    &-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-left: 20px;
+      padding-right: 20px;
+
+      &-title {
+        font-size: 30px;
+        color: $pre_white;
+      }
+    }
+
+    &-btn-block {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      .todo__add-btn {
+        padding: 0;
+
+        &--cancel {
+          background-color: $violet;
+          box-shadow: 0 2px 25px rgba($violet, 0.5);
+        }
+      }
+    }
+
+    &-btn {
+      margin-right: 30px;
+      margin-left: 30px;
+      width: 150px;
+    }
+
+    &-input {
+      width: 100%;
+
+      &--time {
+        &:first-child {
+          margin-right: 10px;
+        }
+
+        &:last-child {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    &-time-inputs {
+      width: 100%;
+      display: flex;
+    }
+  }
+}

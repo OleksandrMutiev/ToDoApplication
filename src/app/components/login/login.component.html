@@ -1,0 +1,71 @@
+<div class="login__outer-container">
+  <div class="login__inner-container">
+    <form class="login__form" [formGroup]="form">
+      <h2 class="main-title">Login</h2>
+      <div class="login__form-input-container">
+        <mat-form-field appearance="outline" class="login__form-input">
+          <mat-label>Enter your email</mat-label>
+          <input
+            matInput
+            placeholder="email@example.com"
+            formControlName="email"
+            required
+          />
+          <mat-error *ngIf="form.get('email').hasError('required')"
+            >Email is required</mat-error
+          >
+          <mat-error *ngIf="form.get('email').hasError('email')"
+            >Not a valid email</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="login__form-input-container">
+        <mat-form-field appearance="outline" class="login__form-input">
+          <mat-label>Enter your password</mat-label>
+          <input
+            matInput
+            [type]="hidePassword ? 'password' : 'text'"
+            formControlName="password"
+            required
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword"
+          >
+            <mat-icon>{{
+              hidePassword ? 'visibility_off' : 'visibility'
+            }}</mat-icon>
+          </button>
+          <mat-error *ngIf="form.get('password').hasError('required')"
+            >Password is required</mat-error
+          >
+          <mat-error *ngIf="form.get('password').hasError('minlength')"
+            >Password min length is 6 characters</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="login__form-input-container">
+        <button
+          (click)="submit()"
+          type="submit"
+          mat-raised-button
+          class="login__form-btn bubbly-button"
+          [disabled]="form.invalid || submitted"
+        >
+          Login
+        </button>
+        <span class="login__form-span">OR</span>
+        <a
+          [routerLink]="['/', 'registration']"
+          mat-raised-button
+          class="login__form-btn bubbly-button"
+          >Sign up</a
+        >
+      </div>
+    </form>
+  </div>
+</div>

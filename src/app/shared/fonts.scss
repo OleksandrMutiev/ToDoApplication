@@ -1,0 +1,34 @@
+@font-face {
+  font-family: 'Monoton';
+  src: url('./app/fonts/Monoton-Regular.woff2') format('woff2'),
+    url('./app/fonts/Monoton-Regular.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Racing Sans One';
+  src: url('./app/fonts/RacingSansOne-Regular.woff2') format('woff2'),
+    url('./app/fonts/RacingSansOne-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('./app/fonts/Lato-Light.woff2') format('woff2'),
+    url('./app/fonts/Lato-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('./app/fonts/Lato-Regular.woff2') format('woff2'),
+    url('./app/fonts/Lato-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

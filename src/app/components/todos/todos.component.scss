@@ -1,0 +1,302 @@
+@import '../../../app/shared/params';
+
+::ng-deep.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: $fuschia;
+}
+
+::ng-deep.todos__select.mat-form-field {
+  height: 35px;
+}
+
+::ng-deep.todos__select.mat-form-field-appearance-fill .mat-form-field-flex {
+  height: 35px;
+  padding: 0 3px 0 3px;
+  background-color: $fuschia;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+}
+
+.todos__select-label {
+  color: white;
+  opacity: 1;
+  font-family: 'Racing Sans One', sans-serif;
+}
+
+::ng-deep.todos__select-panel.mat-select-panel {
+  background-color: $fuschia;
+}
+
+::ng-deep.mat-option {
+  border-bottom: 1px solid $white;
+  font-family: 'Racing Sans One', sans-serif;
+}
+
+::ng-deep.mat-select {
+  font-family: 'Racing Sans One', sans-serif;
+}
+
+::ng-deep.mat-option:hover:not(.mat-option-disabled) {
+  background-color: $pink;
+}
+
+.badge_active::ng-deep.mat-badge-content {
+  background: $light_yellow;
+  color: $white;
+  box-shadow: 0 2px 25px $light_yellow;
+}
+
+::ng-deep.mat-badge-content {
+  background: $light_green;
+  color: $main;
+  box-shadow: 0 2px 25px $light_green;
+}
+
+.todos__pagination::ng-deep .ngx-pagination .current {
+  background-color: $fuschia;
+  box-shadow: 0 2px 25px $fuschia;
+}
+
+.todos__pagination::ng-deep .ngx-pagination {
+  & .pagination-next,
+  .pagination-previous,
+  a,
+  span {
+    font-size: 18px;
+    font-family: 'Racing Sans One', sans-serif;
+    color: $white;
+
+    &:hover {
+      background-color: $fuschia;
+      box-shadow: 0 2px 25px $fuschia;
+
+      &.disabled {
+        & span {
+          background-color: unset;
+          box-shadow: unset;
+        }
+        background-color: unset;
+        box-shadow: unset;
+      }
+    }
+  }
+}
+
+.todos {
+  &__outer-container {
+    margin: 0 auto;
+    width: 900px;
+  }
+
+  &__search {
+    width: 50%;
+    font-size: 22px;
+    margin-left: 30px;
+    color: $white;
+
+    &--full {
+      width: 100%;
+    }
+  }
+
+  &__cards {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding-bottom: 40px;
+
+    .todos__add-btn {
+      padding: 0;
+    }
+  }
+
+  &__pagination {
+    &--block {
+      display: flex;
+      align-self: flex-end;
+      margin-top: 20px;
+    }
+  }
+
+  &__card {
+    box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+    background-color: $main;
+    width: 90%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    word-break: break-word;
+  }
+
+  &__buttons {
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__controllers-block {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__add-btn {
+    width: 150px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  &__no-todos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    color: $fuschia;
+    margin-top: 50px;
+
+    .todos__add-btn {
+      padding: 0;
+    }
+  }
+
+  &__btn {
+    &--disabled {
+      color: unset;
+    }
+  }
+
+  &__expired {
+    text-decoration: line-through;
+  }
+
+  &__statistic {
+    position: absolute;
+    border-radius: 4px;
+    top: 66px;
+    left: -120px;
+    width: 100px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    background: $main;
+    box-shadow: 0 2px 25px $fuschia;
+
+    &-badge {
+      word-break: break-all;
+    }
+
+    &-item {
+      color: $white;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Racing Sans One', serif;
+      font-size: 18px;
+
+      &--total {
+        color: $fuschia;
+        text-shadow: 0 2px 25px $fuschia;
+      }
+
+      &--active {
+        color: $light_yellow;
+        text-shadow: 0 2px 25px $light_yellow;
+      }
+
+      &--done {
+        color: $light_green;
+        text-shadow: 0 2px 25px $light_green;
+      }
+
+      &--archive {
+        color: $light_red;
+        text-shadow: 0 2px 25px $light_red;
+      }
+
+      &--deadline {
+        color: $violet;
+        text-shadow: 0 2px 25px $violet;
+      }
+    }
+  }
+}
+
+.card {
+  &__title {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Lato, sans-serif;
+    font-weight: 500;
+
+    &-additionals {
+      display: flex;
+      align-items: center;
+    }
+
+    &-dates {
+      min-width: 160px;
+      margin-left: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    &-date {
+      margin: 0;
+      font-size: 16px;
+
+      &--deadline {
+        color: $light_red;
+      }
+
+      &--created {
+        color: $light_green;
+      }
+    }
+
+    &-status {
+      margin: 0;
+      display: flex;
+      align-items: center;
+
+      &-state {
+        min-width: 80px;
+        width: 80px;
+        text-align: center;
+        margin-left: 20px;
+        font-size: 15px;
+        padding: 7px;
+        border-radius: 20px;
+        cursor: pointer;
+        color: $main;
+        background-color: $light_green;
+        box-shadow: 0 2px 25px $light_green;
+
+        &--active {
+          color: $white;
+          background-color: $light_yellow;
+          box-shadow: 0 2px 25px $light_yellow;
+        }
+
+        &--archive {
+          color: $white;
+          background-color: $light_red;
+          box-shadow: 0 2px 25px $light_red;
+        }
+      }
+    }
+  }
+
+  &__content {
+    font-size: 16px;
+    font-family: Lato, sans-serif;
+    font-weight: 100;
+  }
+}

@@ -1,0 +1,54 @@
+<nav class="header">
+  <div class="header__wrapper">
+    <a
+      [routerLink]="['/']"
+      class="header__link header__link--main bubbly-button"
+      routerLinkActive="header__link--active"
+    >
+      ToDoApp
+    </a>
+    <div class="header__links-block">
+      <div
+        *ngIf="authService.isAuthenticated(); else noAuth"
+        class="header__links-block--inner"
+      >
+        <a
+          *ngFor="let link of links"
+          [routerLink]="link.link"
+          class="header__link bubbly-button"
+          routerLinkActive="header__link--active"
+        >
+          {{ link.name }}
+        </a>
+      </div>
+      <a
+        *ngIf="authService.isAuthenticated()"
+        [routerLink]="['/']"
+        (click)="logout($event)"
+        class="header__link header__link--logout bubbly-button"
+        routerLinkActive="header__link--active"
+      >
+        Logout
+      </a>
+    </div>
+
+    <ng-template #noAuth>
+      <div class="header__links-block--not-auth">
+        <a
+          [routerLink]="['/', 'login']"
+          class="header__link bubbly-button"
+          routerLinkActive="header__link--active"
+        >
+          Sign in
+        </a>
+        <a
+          [routerLink]="['/', 'registration']"
+          class="header__link bubbly-button"
+          routerLinkActive="header__link--active"
+        >
+          Sign up
+        </a>
+      </div>
+    </ng-template>
+  </div>
+</nav>

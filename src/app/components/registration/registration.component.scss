@@ -1,0 +1,58 @@
+@import '../../../app/shared/params';
+
+.registration {
+  &__outer-container {
+    width: 800px;
+    margin: 0 auto;
+  }
+
+  &__inner-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed $fuschia;
+  }
+
+  &__form {
+    width: 100%;
+    padding: 20px;
+    justify-content: center;
+
+    &-input {
+      width: 50%;
+      margin-right: 20px;
+      margin-left: 20px;
+      color: $white;
+
+      &-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+      }
+    }
+
+    &-btn {
+      width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .registration__form-btn {
+      padding: 0;
+    }
+
+    &-span {
+      color: $white;
+      display: flex;
+      align-items: center;
+      margin-right: 30px;
+      margin-left: 30px;
+      background-color: $fuschia;
+      padding: 10px;
+      border-radius: 50%;
+      text-align: center;
+    }
+  }
+}
